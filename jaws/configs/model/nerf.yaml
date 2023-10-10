@@ -1,0 +1,21 @@
+# initial learning rate
+lr: 1e-2
+ckpt: "latest"
+# use amp mixed precision training
+fp16: True
+
+sigma_encoding: hashgrid
+direction_encoding: sphere_harmonics
+background_encoding: hashgrid
+n_sigma_layers: 2
+n_color_layers: 3
+n_background_layers: 2
+sigma_hidden_dim: 64
+color_hidden_dim: 64
+background_hidden_dim: 64
+geo_feat_dim: 15
+
+raft_checkpoint: ${root}/checkpoints/raft-things.pth
+encoder_checkpoint: ${root}/checkpoints/autoencoder-mse-unit-224-noskip-490-last.ckpt
+model_size: small
+encoder_num_levels: 16

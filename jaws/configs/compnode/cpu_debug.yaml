@@ -1,0 +1,5 @@
+batch_size: 4
+num_workers: 0
+num_gpus: 0
+num_nodes: 1
+accelerator: ddp

@@ -1,0 +1,39 @@
+# Config file used to override default config values for demo_jaws.py
+
+data_dir: ${hydra:runtime.cwd}/data/flame_steak
+xp_name: flame_steak
+model: nerf
+target_dir_video: ${hydra:runtime.cwd}/data/jaws_dolly_zoom
+datamodule: jaws_dollyzoom
+
+num_epochs: 101
+num_mixed_grad: 8000
+num_steps: 256
+lr: 0.015
+loss_type: pose_flow
+flow_loss_type: EE
+alpha_losses: 0.97
+alpha_two_strokes: 0.1
+guidance_type: guidance
+
+init_cam_idx_same: 14
+init_focal_search: False
+two_strokes: True
+
+diff_temporal: False
+diff_focal: True
+seed: 1
+
+#########################################################################################
+defaults:
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+hydra:
+  run:
+    dir: ${hydra:runtime.cwd}
+  output_subdir: null
+  sweep:
+    dir: ${hydra:runtime.cwd}/logs
+    subdir: ${hydra:runtime.cwd}/logs

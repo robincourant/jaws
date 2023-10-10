@@ -1,0 +1,29 @@
+num_epochs: 201
+num_sample_rays: 2048
+num_sample_grad: 8000
+image_size: [224, 224]
+log_interval: 25
+blur_kernel: [3, 3]
+blur_sigma: 1
+learning_rate: 0.005
+target_dir: null
+pixel_loss: false
+pixel_loss_type: vgg # vgg, mse
+flow_loss: true
+flow_loss_type: EE # EE, AN
+pose_loss: true
+pose_loss_type: heatmap # euclidean
+grad_norm: true
+tag: null
+regularize_loss_range: 1.0
+regularize_loss_weight: 5
+guidance_map: true
+guidance_type: guidance # guidance, inerf_original, random
+#
+early_stop_num: 401
+early_stop_delta: 0
+
+#
+diff_temporal: false
+diff_focal: true
+allow_backward_t: false

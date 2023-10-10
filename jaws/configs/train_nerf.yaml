@@ -1,0 +1,67 @@
+defaults:
+  - _self_
+  - compnode: light_1n_1g_28b.yaml
+  - model: nerf.yaml
+  - datamodule: lego.yaml
+  # - datamodule: lego_dataset_small.yaml
+  # - datamodule: 1per_dataset.yaml
+  # - datamodule: firekeeper.yaml
+
+# num of sanity checking step
+num_sanity_val_steps: 0
+# num of epochs
+num_epochs: 2048
+# num of training epoch after validation
+check_val_every_n_epoch: 15
+# num rays sampled per image for each training step
+num_rays: 8096
+# num steps sampled per ray
+num_steps: 512
+# num steps up-sampled per ray
+upsample_steps: 0
+# batch size of rays at infernce to avoid OOM
+max_ray_batch: 4096
+# num of checkpoints to keep
+num_checkpoints: 2
+# if activate error map
+error_map: false
+# if using RGB+S for training loss
+saturation_loss: false
+# normally between 0.01 to 0.001, zero when not applied
+floater_ratio: -1
+
+###################################################################
+# Type of run to launch (current: train TODO: debug/eval/infer/...)
+run_type: train
+dynamic: false
+
+# Name of the project is accessed by loggers
+project_name: jaws
+# Name of the run is accessed by loggers
+xp_name: ${xp_name}
+# Wether to synced the logs or not (WandB)
+log_offline: false
+# Metric to monitor to save models
+checkpoint_metric: train/loss
+
+root: ${hydra:runtime.cwd}
+# Path to folder with data
+data_dir: ${data_dir}
+# Path to folder to save results
+result_dir: ${root}/results/${xp_name}
+
+# Seed for random number generators
+seed: 1
+# Pretty print config at the start of the run using Rich library
+print_config: True
+# Disable (or not) python warnings
+ignore_warnings: True
+
+device: cuda
+hydra:
+  run:
+    dir: ${hydra:runtime.cwd}/logs
+  output_subdir: null
+  sweep:
+    dir: ${hydra:runtime.cwd}/logs
+    subdir: ${hydra:runtime.cwd}/logs

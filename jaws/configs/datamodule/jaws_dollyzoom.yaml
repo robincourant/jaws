@@ -1,0 +1,44 @@
+# dataset mode supports (colmap blender)
+mode: blender
+independent_calibration: false
+# preload all data into GPU accelerate training but use more GPU memory
+preload: false
+# assume the scene is bounded in box[-bound bound]^3 if > 1 "will invoke adaptive ray marching." the fox dataset
+bound: 2
+# scale camera location into box[-bound bound]^3
+scale: 0.3
+# dt_gamma (>=0) for adaptive ray marching. set to 0 to disable" >0 to accelerate rendering (but usually with worse quality)
+dt_gamma: 0.05
+# minimum near distance for camera"25
+min_near: 0.0
+# threshold for density grid to be occupied
+density_thresh: 0.01
+# <0 uses no rand pose, =0 only uses rand pose, >0 sample one rand pose every $ known poses
+rand_pose: -1
+
+# use fully-fused MLP
+ff: False
+background_radius: -1
+background_perlin_noise: False
+
+# during INERF
+
+focal_resize_factor: 1.0 # if -1, dynamic search
+init_pose_dist_factor: 1.0
+
+init_search: saved # ground_truth, index
+init_cam_idx: 12 
+
+blur_pred: false
+
+aabb: [-2, -2, -1, 2, 2, 0.8]
+# aabb: [-2, -2, -2, 2, 2, 1.3]
+
+anim_start_time: 0.0 # if negative, used saved 
+auto_anim_time: false
+only_init_focal_search: false # all auto 
+two_strokes: true
+
+alpha_losses: 0.3
+# first temporal second spatial
+alpha_two_strokes: 0.1

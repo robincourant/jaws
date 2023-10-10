@@ -1,0 +1,10 @@
+hydra-core
+pytorch_lightning
+wandb
+imageio
+yacs
+pycocotools
+json_tricks
+ptflops
+kornia
+# git+https://github.com/pvigier/perlin-numpy
